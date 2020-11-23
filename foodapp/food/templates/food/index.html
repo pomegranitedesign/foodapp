@@ -1,0 +1,30 @@
+{% extends 'food/base.html' %} 
+
+{% block header_title %} Home page {% endblock %}
+
+{% block body %} 
+  {% if items|length > 0 %}
+    {% for item in items %}
+      <div class='row' style="margin-top: 30px;">
+        <div class="col-md-3 offset-md-2">
+          <img src="{{ item.item_image }}" height="150px" alt="Item image" class="card" />
+        </div>
+        <div class="col-md-4">
+          <h6>{{ item.item_name }}</h6>
+          <h6>{{ item.item_desc }}</h6>
+          <h6>{{ item.item_price }}</h6>
+        </div>
+        <div class="col-md-2">
+          <a href="{% url 'food:item_details' item.id %}" class='btn btn-success'>View Details</a>
+          <a href="{% url 'food:edit_item' item.id %}" class='btn btn-warning'>Edit</a>
+          <a href="{% url 'food:delete_item' item.id %}" class='btn btn-danger'>Delete</a>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="container">
+      <h1>No items</h1>
+      <a href="{% url 'food:create_item' %}">Add one</a>
+    </div>
+  {% endif %}
+{% endblock %}
