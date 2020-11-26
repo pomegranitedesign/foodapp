@@ -3,6 +3,7 @@
 {% block body %}
   <div class="container">
     <h1>{{ user.username }}</h1>
-    <img src="{{ user.profile.image.url }}" alt="">
+    <img height="100px" width="100px" src="{{ user.profile.image.url }}" alt="">
+    <p>{{ user.profile.location }}</p>
   </div>
 {% endblock %}
